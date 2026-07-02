@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta de Repuestos para Freidoras Industriales</title>
+    <style>
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Estilos para el menú principal */
+        .menu-principal {
+            display: block;
+        }
+
+        .tipos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Estilos para las secciones de contenido */
+        .seccion-contenido {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .seccion-contenido.activa {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .seccion-contenido h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-align: center;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .seccion-contenido h2 {
+            color: #667eea;
+            margin: 30px 0 15px 0;
+            font-size: 1.5em;
+        }
+
+        .seccion-contenido p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .seccion-contenido ul {
+            color: #555;
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .seccion-contenido li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        /* Botón de regreso */
+        .boton-regresar {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #764ba2, #667eea);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
+            cursor: pointer;
+            border: none;
+        }
+
+        .boton-regresar:hover {
+          transform: translateY(-3px) scale(1.05); /* se agranda levemente */
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.7); /* sombra más fuerte */
+    background: linear-gradient(45deg, #764ba2, #667eea); /* invierte el gradiente */
+    color: #fffff0; /* tono más claro de blanco */
+    letter-spacing: 2px; /* más espacio entre letras */
+    text-shadow: 0 1px 5px rgba(255, 255, 255, 0.4); /* brilla un poco */
+    border: 2px solid #fff; /* agrega un borde blanco suave */
+        }
+
+        .tipo {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+             border: 3px solid #000;
+        }
+
+      
+        .tipo:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .tipo img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            filter: brightness(0.9);
+            background: linear-gradient(45deg, #667eea, #764ba2);
+                border: 3px solid #000;
+        }
+
+        .tipo:hover img {
+            filter: brightness(1.1) saturate(1.2);
+            transform: scale(1.05);
+        }
+
+        .tipo h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .tipo:hover h2 {
+            color: #667eea;
+        }
+
+        /* Estilos del botón elegante */
+        .boton {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+            border: none;
+        }
+
+
+       .boton:hover {
+    transform: translateY(-3px) scale(1.05); /* se agranda levemente */
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.7); /* sombra más fuerte */
+    background: linear-gradient(45deg, #764ba2, #667eea); /* invierte el gradiente */
+    color: #fffff0; /* tono más claro de blanco */
+    letter-spacing: 2px; /* más espacio entre letras */
+    text-shadow: 0 1px 5px rgba(255, 255, 255, 0.4); /* brilla un poco */
+    border: 2px solid #fff; /* agrega un borde blanco suave */
+}
+
+
+       
+
+       
+
+        /* Estilo especial para la última tarjeta */
+        .velodromo {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+             border: 3px solid #000;
+        }
+
+        .velodromo:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .velodromo img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            filter: brightness(0.9);
+            background: linear-gradient(45deg, #667eea, #764ba2);
+             border: 3px solid #000;
+        }
+
+        .velodromo:hover img {
+            filter: brightness(1.1) saturate(1.2);
+            transform: scale(1.05);
+        }
+
+        .velodromo h2 {
+            color: #333;
+            font-size: 1.3em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .velodromo:hover h2 {
+            color: #667eea;
+        }
+
+        h1 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    color: brown;
+     }
+   h2 {
+    color: white;
+    text-align: center;
+   }
+.whatsapp img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.whatsapp{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.encabezado{
+    width: 100%;
+    text-align: left;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    box-sizing: border-box;
+    border-bottom: 3px solid #000;
+    margin-bottom: 20px;
+}    
+
+
+.logo img{
+    width: 80px;
+    height: 100px;
+}
+
+.logo h2{
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+
+}
+
+.telefono img{
+    width: 60px;
+    height: 60px;
+}
+
+.telefono h3{
+    font-size: 20px;
+    color: brown;
+    text-align: center;
+    
+}
+
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="encabezado">
+    <div class="logo">
+        <img src="fotos/milogoo.jpeg" alt="Logo">
+        <h2>VENTA DE REPUESTOS Y MATENIMIENTOS DE FREIDORAS INDUSTRIALES </h2>
+    </div>
+
+    <div class="telefono">
+        <img src="fotos/logo_te.avif" alt="Teléfono">
+        <div>
+            <p>Contactanos al numero o  mas informacion al ...</p>
+            <h3>902402318</h3>
+        </div>
+    </div>
+</div>
+        
+    <h2>Vista  los acesorios de repuerto de friedoras industriales </h2><br><br>
+
+        <div id="menu-principal" class="menu-principal">
+            <div class="tipos">
+                <div class="tipo">
+                  <img src="fotos/RobertwhasdeGLp.jpeg" alt="Robertwhas">
+                    <h2>Robertwhas de GLP y de GAS NATURAL  </h2>
+                    <button class="boton" onclick="mostrarSeccion('informacion')">Más info</button>
+                </div>
+
+                <div class="tipo">
+                    <img src="fotos/valvulas.jpeg" alt="Valvulas ">
+                    <h2>Valvulas de termostato de gas </h2>
+                    <button class="boton" onclick="mostrarSeccion('tipos')">Más info</button>
+                </div>
+
+                <div class="tipo">
+                    <img src="fotos/kitdeseguridad.jpeg" alt="seguridad de gas ">
+                    <h2> Kit de piloto y seguridad de gas  </h2>
+                    <button class="boton" onclick="mostrarSeccion('equipamiento')">Más info</button>
+                </div>
+
+                <div class="tipo">
+                    <img src="fotos/termostato.jpeg" alt="Termostato">
+                    <h2>Termostato de control de temperatu </h2>
+                    <button class="boton" onclick="mostrarSeccion('competiciones')">Más info</button>
+                </div>
+
+                <div class="velodromo">
+                    <img src="fotos/termopilas.jpeg" alt="Termopilas ">
+                    <h2>Termopilas  de Robertshaw </h2><br>
+                    <button class="boton" onclick="mostrarSeccion('velodromo')">Más info</button>
+                </div>
+
+                <div class="velodromo">
+                    <img src="fotos/Regulador.jpeg" alt="Reguladores">
+                    <h2>Reguladores de Precion de gas Alianca</h2><br>
+                    <button class="boton" onclick="mostrarSeccion('historia')">Más info</button>
+                </div>
+
+                 <div >
+                </div>
+
+                 <div class="tipo">
+                    <img src="fotos/cables.jpeg" alt="termopar">
+                    <h2>El termopar </h2>
+                    <button class="boton" onclick="mostrarSeccion('competiciones')">Más info</button>
+                </div>
+                <a href="https://wa.me/51902402318?text=Hola,%20quiero%20información%20sobre%20sus%20productos" target="_blank" class="whatsapp">
+                    <img src="fotos/IconodeW.png" alt="WhatsApp" width="70">
+                </a>
+            </div>
+        </div>
+
+       
+        <div id="informacion" class="seccion-contenido">
+            
+            <h1>Robertshaw GLP y Gas Natural</h1>
+             <p>
+        Las válvulas Robertshaw son utilizadas en freidoras industriales
+        para controlar el flujo de gas de manera segura y eficiente.
+            </p>       
+         
+            <h2>Características</h2>
+            <ul>
+                <li>Compatible con GLP y Gas Natural.</li>
+                <li>Alta resistencia al calor.</li>
+                <li>Fácil instalación.</li>
+                <li>Larga vida útil.</li>
+            </ul>
+            <p>
+        Se utilizan en freidoras industriales, cocinas comerciales
+        y equipos gastronómicos que funcionan con gas.
+            </p>
+
+             <h2>Beneficios</h2>
+            <ul>
+                <li>Mayor seguridad.</li>
+                <li>Mejor control de temperatura.</li>
+                <li>Ahorro de gas.</li>
+                <li>Excelente rendimiento.</li>
+            </ul>
+    
+            <button class="boton-regresar" onclick="regresarMenu()">← Regresar al Menú</button>
+        </div>
+
+        <div id="tipos" class="seccion-contenido">
+<h1>Válvulas de Termostato de Gas</h1>
+
+    <p>
+        Las válvulas de termostato de gas son componentes esenciales en las
+        freidoras industriales, ya que permiten regular el flujo de gas y
+        controlar la temperatura de cocción de manera precisa.
+    </p>
+
+    <h2>Características</h2>
+    <ul>
+        <li>Control preciso de temperatura.</li>
+        <li>Fabricadas con materiales resistentes al calor.</li>
+        <li>Compatibles con GLP y Gas Natural.</li>
+        <li>Fácil instalación y mantenimiento.</li>
+    </ul>
+
+    <h2>Aplicaciones</h2>
+    <p>
+        Se utilizan en freidoras industriales, cocinas comerciales,
+        hornos y equipos gastronómicos que requieren control de temperatura.
+    </p>
+
+    <h2>Beneficios</h2>
+    <ul>
+        <li>Mayor seguridad durante el funcionamiento.</li>
+        <li>Ahorro en el consumo de gas.</li>
+        <li>Mejor rendimiento del equipo.</li>
+        <li>Mayor vida útil de la freidora.</li>
+    </ul>
+
+    <h2>Recomendaciones</h2>
+    <p>
+        Se recomienda realizar revisiones periódicas para garantizar
+        un correcto funcionamiento y evitar fugas o fallas en el sistema.
+    </p>
+            <button class="boton-regresar" onclick="regresarMenu()">← Regresar al Menú</button>
+        </div>
+
+
+
+        <div id="equipamiento" class="seccion-contenido">
+            <h1>Kit de Piloto y Seguridad de Gas</h1>
+
+            <h2>¿Qué es un Kit de Piloto?</h2>
+            <p>
+                El kit de piloto y seguridad de gas es un componente fundamental en las
+                freidoras industriales. Su función es encender el quemador de manera
+                segura y cortar el suministro de gas automáticamente en caso de que la
+                llama piloto se apague.
+            </p>
+
+            <h2>Componentes del Kit</h2>
+            <ul>
+                <li><strong>Piloto:</strong> Genera la llama de encendido.</li>
+                <li><strong>Termopila:</strong> Produce energía para mantener abierta la válvula de gas.</li>
+                <li><strong>Termocupla:</strong> Detecta la presencia de la llama.</li>
+                <li><strong>Conexiones:</strong> Permiten la instalación segura del sistema.</li>
+            </ul>
+            <h2>Ventajas</h2>
+            <ul>
+                <li>Mayor seguridad en el funcionamiento.</li>
+                <li>Evita fugas de gas.</li>
+                <li>Encendido rápido y eficiente.</li>
+                <li>Mayor durabilidad del equipo.</li>
+                <li>Reduce riesgos de accidentes.</li>
+            </ul>
+            <h2>Aplicaciones</h2>
+            <p>
+                Este kit es utilizado en freidoras industriales, cocinas comerciales,
+                hornos y diversos equipos que funcionan con gas GLP o Gas Natural.
+            </p>
+            <h2>Recomendaciones</h2>
+            <ul>
+                <li>Realizar mantenimiento periódico.</li>
+                <li>Verificar el estado de la llama piloto.</li>
+                <li>Revisar las conexiones de gas regularmente.</li>
+                <li>Utilizar repuestos originales para mayor seguridad.</li>
+            </ul>
+            <button class="boton-regresar" onclick="regresarMenu()">← Regresar al Menú</button>
+        </div>
+
+
+
+        <div id="competiciones" class="seccion-contenido">
+            <h1>Termostato de Control de Temperatura</h1>
+
+                <h2>¿Qué es un Termostato?</h2>
+                <p>
+                    El termostato es un dispositivo encargado de regular y controlar la
+                    temperatura del aceite en las freidoras industriales. Su función es
+                    mantener una temperatura estable para garantizar una cocción uniforme
+                    y segura.
+                </p>
+                <h2>Características</h2>
+                <ul>
+                    <li>Control preciso de temperatura.</li>
+                    <li>Alta resistencia al calor.</li>
+                    <li>Compatible con diferentes modelos de freidoras.</li>
+                    <li>Fácil instalación y mantenimiento.</li>
+                </ul>
+                <h2>Beneficios</h2>
+                <p>
+                    Un termostato en buen estado ayuda a mejorar el rendimiento de la
+                    freidora y evita el sobrecalentamiento del aceite.
+                </p>
+                <ul>
+                    <li>Ahorro de energía y gas.</li>
+                    <li>Mayor seguridad en el equipo.</li>
+                    <li>Mejor calidad en la cocción de los alimentos.</li>
+                    <li>Mayor vida útil de la freidora.</li>
+                </ul>
+                <h2>Aplicaciones</h2>
+                <p>
+                    Se utiliza en freidoras industriales, cocinas comerciales,
+                    restaurantes, pollerías, cafeterías y otros negocios gastronómicos
+                    que requieren un control eficiente de la temperatura.
+                </p>
+                <h2>Recomendaciones</h2>
+                <p>
+                    Se recomienda revisar periódicamente el funcionamiento del termostato
+                    para garantizar una temperatura correcta y evitar daños en el equipo.
+                </p>
+            <button class="boton-regresar" onclick="regresarMenu()">← Regresar al Menú</button>
+        </div>
+
+
+
+        <div id="velodromo" class="seccion-contenido">
+            <h1>Reguladores de Precion de gas Alianca</h1>
+
+                <h2>¿Qué son las Termopilas?</h2>
+                <p>
+                Las termopilas Robertshaw son dispositivos de seguridad utilizados en equipos a gas,
+                como freidoras industriales, hornos, cocinas y calentadores. Su función principal es
+                generar energía eléctrica a partir del calor de la llama piloto para mantener abierta
+                la válvula de gas de manera segura.
+                </p>
+
+                <h2>Características Principales</h2>
+                <ul>
+                    <li><strong>Alta resistencia:</strong> Fabricadas para soportar altas temperaturas.</li>
+                    <li><strong>Seguridad:</strong> Cortan el suministro de gas cuando la llama se apaga.</li>
+                    <li><strong>Compatibilidad:</strong> Utilizadas en diversos equipos industriales a gas.</li>
+                    <li><strong>Durabilidad:</strong> Diseñadas para un funcionamiento prolongado.</li>
+                </ul>
+
+                <h2>Aplicaciones</h2>
+                <ul>
+                    <li>Freidoras industriales.</li>
+                    <li>Hornos a gas.</li>
+                    <li>Cocinas industriales.</li>
+                    <li>Calentadores de agua.</li>
+                    <li>Equipos gastronómicos.</li>
+                </ul>
+
+                <h2>Ventajas</h2>
+                <p>
+                Las termopilas Robertshaw ofrecen un funcionamiento confiable y seguro,
+                permitiendo que los equipos trabajen de manera eficiente. Además, ayudan
+                a prevenir fugas de gas al cerrar automáticamente el paso cuando no existe
+                una llama activa.
+                </p>
+
+                <h2>Mantenimiento</h2>
+                <ul>
+                    <li>Limpiar periódicamente la punta de la termopila.</li>
+                    <li>Verificar que la llama piloto la caliente correctamente.</li>
+                    <li>Revisar conexiones eléctricas y de gas.</li>
+                    <li>Reemplazar la pieza si presenta desgaste o fallas.</li>
+                </ul>
+
+
+            <button class="boton-regresar" onclick="regresarMenu()">← Regresar al Menú</button>
+        </div>
+
+
+        <div id="historia" class="seccion-contenido">
+            <h1>Reguladores de Presión de Gas Alianza</h1>
+
+        <h2>¿Qué son los Reguladores de Presión de Gas?</h2>
+        <p>
+        Los reguladores de presión de gas Alianza son dispositivos diseñados para controlar
+        y mantener estable la presión del gas que llega a equipos industriales y domésticos.
+        Su función principal es garantizar un suministro seguro y constante, evitando
+        variaciones que puedan afectar el funcionamiento de los equipos.
+        </p>
+
+        <h2>Características Principales</h2>
+        <ul>
+            <li><strong>Alta seguridad:</strong> Reducen riesgos por exceso de presión.</li>
+            <li><strong>Material resistente:</strong> Fabricados con materiales de alta calidad.</li>
+            <li><strong>Fácil instalación:</strong> Compatibles con diferentes sistemas de gas.</li>
+            <li><strong>Rendimiento eficiente:</strong> Mantienen un flujo constante de gas.</li>
+        </ul>
+
+        <h2>Aplicaciones</h2>
+        <ul>
+            <li>Freidoras industriales.</li>
+            <li>Hornos y cocinas industriales.</li>
+            <li>Parrillas y planchas a gas.</li>
+            <li>Restaurantes y negocios gastronómicos.</li>
+            <li>Sistemas domésticos de gas GLP y Gas Natural.</li>
+        </ul>
+
+        <h2>Ventajas</h2>
+        <p>
+        Los reguladores Alianza permiten un mejor control del consumo de gas,
+        aumentan la seguridad de los equipos y prolongan la vida útil de los quemadores,
+        válvulas y demás componentes del sistema.
+        </p>
+
+        <h2>Mantenimiento</h2>
+        <ul>
+            <li>Revisar periódicamente posibles fugas.</li>
+            <li>Verificar el estado de las conexiones.</li>
+            <li>Mantener limpio el regulador y sus accesorios.</li>
+            <li>Reemplazar el regulador cuando presente desgaste o daños.</li>
+        </ul>
+            <button class="boton-regresar" onclick="regresarMenu()">← Regresar al Menú</button>
+        </div>
+
+        <div id="historia" class="seccion-contenido">
+        <h1>Termopar para Equipos a Gas</h1>
+
+        <h2>¿Qué es un Termopar?</h2>
+        <p>
+        El termopar es un dispositivo de seguridad utilizado en equipos que funcionan con gas,
+        como freidoras industriales, hornos, cocinas y calentadores. Su función principal es
+        detectar la presencia de la llama piloto y permitir el paso del gas únicamente cuando
+        la llama está encendida.
+        </p>
+
+        <h2>Características Principales</h2>
+        <ul>
+            <li><strong>Seguridad:</strong> Evita fugas de gas cuando la llama se apaga.</li>
+            <li><strong>Alta resistencia:</strong> Soporta temperaturas elevadas.</li>
+            <li><strong>Fácil instalación:</strong> Compatible con diferentes válvulas de gas.</li>
+            <li><strong>Durabilidad:</strong> Fabricado para un uso continuo y prolongado.</li>
+        </ul>
+
+        <h2>Funcionamiento</h2>
+        <p>
+        Cuando la llama piloto calienta la punta del termopar, este genera una pequeña corriente
+        eléctrica que mantiene abierta la válvula de seguridad. Si la llama se apaga, deja de
+        producir energía y la válvula se cierra automáticamente, cortando el suministro de gas.
+        </p>
+
+        <h2>Aplicaciones</h2>
+        <ul>
+            <li>Freidoras industriales.</li>
+            <li>Hornos a gas.</li>
+            <li>Cocinas industriales.</li>
+            <li>Calentadores de agua.</li>
+            <li>Equipos gastronómicos y comerciales.</li>
+        </ul>
+
+        <h2>Ventajas</h2>
+        <p>
+        El termopar brinda mayor seguridad al sistema de gas, ayuda a prevenir accidentes y
+        garantiza un funcionamiento confiable de los equipos industriales y domésticos.
+        </p>
+
+        <h2>Mantenimiento</h2>
+        <ul>
+            <li>Limpiar periódicamente la punta del termopar.</li>
+            <li>Verificar que la llama piloto lo caliente correctamente.</li>
+            <li>Revisar el estado de las conexiones.</li>
+            <li>Reemplazar el termopar si presenta desgaste o fallas.</li>
+        </ul>
+
+        <button class="boton-regresar" onclick="regresarMenu()">← Regresar al Menú</button>
+    </div>
+        </div>
+
+    <script>
+        function mostrarSeccion(seccionId) {
+            // Ocultar el menú principal
+            document.getElementById('menu-principal').style.display = 'none';
+            
+            // Ocultar todas las secciones
+            const secciones = document.querySelectorAll('.seccion-contenido');
+            secciones.forEach(seccion => {
+                seccion.classList.remove('activa');
+            });
+            
+            // Mostrar la sección seleccionada
+            document.getElementById(seccionId).classList.add('activa');
+            
+            // Scroll hacia arriba
+            window.scrollTo(0, 0);
+        }
+        
+        function regresarMenu() {
+            // Ocultar todas las secciones
+            const secciones = document.querySelectorAll('.seccion-contenido');
+            secciones.forEach(seccion => {
+                seccion.classList.remove('activa');
+            });
+            
+            // Mostrar el menú principal
+            document.getElementById('menu-principal').style.display = 'block';
+            
+            // Scroll hacia arriba
+            window.scrollTo(0, 0);
+            
+       
+}
+
+        
+        
+    </script>
+</body>
+</html>
